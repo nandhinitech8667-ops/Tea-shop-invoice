@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Search, Filter, Eye, Trash2, Printer, Download, FileText, X } from 'lucide-react';
+import { useState } from 'react';
+import { Search, Eye, Trash2, Printer, Download, FileText } from 'lucide-react';
 import { downloadInvoicePDF } from '../services/pdfService';
 import { useInvoiceStore } from '../store/useInvoiceStore';
 import ThermalBill from '../components/invoice/ThermalBill';

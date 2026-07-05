@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Search, Plus, Edit2, Trash2, AlertTriangle, Package, ToggleLeft, ToggleRight } from 'lucide-react';
 import { useProductStore } from '../store/useProductStore';
 import AddEditProductModal from '../components/inventory/AddEditProductModal';
 import type { Product, ProductCategory } from '../types';
-
 const CATEGORIES: (ProductCategory | 'All')[] = ['All', 'Tea', 'Coffee', 'Snacks', 'Cool Drinks'];
 
 const CATEGORY_COLORS: Record<string, string> = {
