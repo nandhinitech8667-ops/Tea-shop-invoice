@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Minus, Plus, Trash2, ShoppingCart, CreditCard, Percent, ChevronDown } from 'lucide-react';
 import { useInvoiceStore } from '../../store/useInvoiceStore';
 import { usePaymentStore } from '../../store/usePaymentStore';

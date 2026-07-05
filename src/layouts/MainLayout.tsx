@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { LayoutDashboard, ShoppingCart, History, Package, BarChart3, Moon, Sun, Menu, X, Settings, Store } from 'lucide-react';
+import { useState } from 'react';
+import { LayoutDashboard, ShoppingCart, History, Package, BarChart3, Moon, Sun, Menu, X } from 'lucide-react';
 import { useInvoiceStore } from '../store/useInvoiceStore';
 import { useProductStore } from '../store/useProductStore';
 

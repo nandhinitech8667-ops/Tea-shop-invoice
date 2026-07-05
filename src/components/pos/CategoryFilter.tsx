@@ -1,4 +1,4 @@
-import React from 'react';
+
 import type { ProductCategory } from '../../types';
 
 const CATEGORIES: { label: string; value: ProductCategory | 'All'; emoji: string; color: string }[] = [

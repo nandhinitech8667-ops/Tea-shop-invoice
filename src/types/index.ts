@@ -78,6 +78,7 @@ export interface DashboardStats {
   popularItems: { name: string; quantity: number; sales: number }[];
   weeklySales: { date: string; amount: number }[];
   categorySales: { name: string; value: number }[];
+  revenueByPaymentMethod: Record<PaymentMethod, number>;
 }
 
 // ─── Payment Flow Types ───────────────────────────────────────────────────────

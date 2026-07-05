@@ -1,5 +1,4 @@
-import React from 'react';
-import { FileText, TrendingUp, IndianRupee, ShoppingBag } from 'lucide-react';
+import { TrendingUp, IndianRupee, ShoppingBag } from 'lucide-react';
 import { useInvoiceStore } from '../store/useInvoiceStore';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line
@@ -69,7 +68,7 @@ export default function ReportsPage() {
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis dataKey="date" tick={{ fontSize: 10 }} interval={4} />
             <YAxis tick={{ fontSize: 11 }} />
-            <Tooltip formatter={(value: number) => [`₹${value.toFixed(2)}`, 'Revenue']} />
+            <Tooltip formatter={(value: any) => [`₹${Number(value).toFixed(2)}`, 'Revenue']} />
             <Line type="monotone" dataKey="amount" stroke="#10b981" strokeWidth={2.5} dot={false} />
           </LineChart>
         </ResponsiveContainer>

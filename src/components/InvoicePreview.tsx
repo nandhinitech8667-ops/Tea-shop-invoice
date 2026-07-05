@@ -14,11 +14,11 @@ export const InvoicePreview: React.FC = () => {
   const {
     activeCustomer,
     activeItems,
-    activePaymentMode,
+    activePaymentMethod,
     activePrinterSize,
     setActivePrinterSize,
     shopDetails,
-    saveActiveInvoice,
+    saveInvoice,
     clearActiveInvoice
   } = useInvoiceStore();
 
@@ -33,7 +33,7 @@ export const InvoicePreview: React.FC = () => {
     if (activeItems.length === 0) return;
     
     // Save invoice (which resets the active state)
-    saveActiveInvoice();
+    saveInvoice('');
     
     // Create temporary print view or redirect to print
     // To trigger clean print of just the receipt, we print by adding a utility printing class
@@ -46,7 +46,7 @@ export const InvoicePreview: React.FC = () => {
 
   const handleSaveOnly = () => {
     if (activeItems.length === 0) return;
-    saveActiveInvoice();
+    saveInvoice('');
   };
 
   const handleDownloadPDF = () => {
@@ -64,8 +64,11 @@ export const InvoicePreview: React.FC = () => {
       subtotal,
       gstPercent,
       gstAmount,
+      discountPercent: 0,
+      discountAmount: 0,
       grandTotal,
-      paymentMode: activePaymentMode,
+      paymentMethod: activePaymentMethod,
+      transactionId: '',
       status: 'paid' as const,
       printerSize: activePrinterSize
     };
@@ -143,7 +146,7 @@ export const InvoicePreview: React.FC = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-1">PAYMENT DETAILS:</p>
-                  <p className="font-bold text-slate-800 dark:text-zinc-200 uppercase">{activePaymentMode}</p>
+                  <p className="font-bold text-slate-800 dark:text-zinc-200 uppercase">{activePaymentMethod}</p>
                   <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">PAID</p>
                 </div>
               </div>
@@ -246,7 +249,7 @@ export const InvoicePreview: React.FC = () => {
               </div>
 
               <div className="text-center mt-4 pt-2 border-t border-dashed border-slate-300 text-[9px] text-slate-500">
-                <p>Payment Mode: {activePaymentMode.toUpperCase()}</p>
+                <p>Payment Mode: {activePaymentMethod.toUpperCase()}</p>
                 <p className="font-bold mt-1">THANK YOU! VISIT AGAIN!</p>
               </div>
             </div>
@@ -294,7 +297,7 @@ export const InvoicePreview: React.FC = () => {
               </div>
 
               <div className="text-center mt-3 text-[7.5px] text-slate-500">
-                <p>PAY: {activePaymentMode.toUpperCase()}</p>
+                <p>PAY: {activePaymentMethod.toUpperCase()}</p>
                 <p className="font-bold">THANK YOU!</p>
               </div>
             </div>

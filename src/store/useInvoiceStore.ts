@@ -30,6 +30,7 @@ interface InvoiceState {
   addActiveItem: (item: Omit<InvoiceItem, 'subtotal'>) => void;
   removeActiveItem: (id: string) => void;
   updateActiveItemQty: (id: string, quantity: number) => void;
+  updateActiveItemPrice: (id: string, price: number) => void;
   setActivePaymentMethod: (mode: PaymentMethod) => void;
   setActivePrinterSize: (size: 'standard' | '80mm' | '58mm') => void;
   setActiveGstPercent: (pct: number) => void;
@@ -153,6 +154,14 @@ export const useInvoiceStore = create<InvoiceState>((set, get) => {
       set((state) => ({
         activeItems: state.activeItems.map((item) =>
           item.id === id ? { ...item, quantity, subtotal: Number((quantity * item.price).toFixed(2)) } : item
+        )
+      }));
+    },
+
+    updateActiveItemPrice: (id, price) => {
+      set((state) => ({
+        activeItems: state.activeItems.map((item) =>
+          item.id === id ? { ...item, price, subtotal: Number((item.quantity * price).toFixed(2)) } : item
         )
       }));
     },

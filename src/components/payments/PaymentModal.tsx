@@ -1,4 +1,3 @@
-import React, { useRef } from 'react';
 import { X, ArrowLeft, CheckCircle } from 'lucide-react';
 import { usePaymentStore } from '../../store/usePaymentStore';
 import { useInvoiceStore } from '../../store/useInvoiceStore';
@@ -20,7 +19,7 @@ export default function PaymentModal() {
   const { isOpen, amount, method, step, transactionId, setMethod, proceedToQR, confirmPayment, closePayment } = usePaymentStore();
   const { shopDetails, activeItems, saveInvoice, activePaymentMethod } = useInvoiceStore();
   const { decrementStock } = useProductStore();
-  const printRef = useRef<HTMLDivElement>(null);
+
 
   if (!isOpen) return null;
 

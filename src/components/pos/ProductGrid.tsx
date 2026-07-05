@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { Plus, Package, AlertTriangle } from 'lucide-react';
 import type { Product } from '../../types';
 

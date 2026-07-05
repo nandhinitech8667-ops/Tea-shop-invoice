@@ -1,4 +1,4 @@
-import type { Invoice, DashboardStats, PaymentMode } from '../types';
+import type { Invoice, DashboardStats, PaymentMethod } from '../types';
 
 export const formatCurrency = (amount: number): string => {
   return new Intl.NumberFormat('en-IN', {
@@ -25,19 +25,22 @@ export const getDashboardStats = (invoices: Invoice[]): DashboardStats => {
   const todayOrders = todaysInvoices.length;
   const averageOrderValue = todayOrders > 0 ? Number((todaySales / todayOrders).toFixed(2)) : 0;
 
-  // 2. Revenue by Payment Mode
-  const revenueByPaymentMode: Record<PaymentMode, number> = {
+  // 2. Revenue by Payment Method
+  const revenueByPaymentMethod: Record<PaymentMethod, number> = {
     cash: 0,
     upi: 0,
-    card: 0,
-    wallet: 0
+    phonepe: 0,
+    paytm: 0,
+    gpay: 0
   };
 
   invoices
     .filter((inv) => inv.status !== 'cancelled')
     .forEach((inv) => {
-      if (revenueByPaymentMode[inv.paymentMode] !== undefined) {
-        revenueByPaymentMode[inv.paymentMode] += inv.grandTotal;
+      if (revenueByPaymentMethod[inv.paymentMethod] !== undefined) {
+        revenueByPaymentMethod[inv.paymentMethod] += inv.grandTotal;
+      } else {
+         revenueByPaymentMethod[inv.paymentMethod] = inv.grandTotal;
       }
     });
 
@@ -99,8 +102,12 @@ export const getDashboardStats = (invoices: Invoice[]): DashboardStats => {
     todaySales: Number(todaySales.toFixed(2)),
     todayOrders,
     averageOrderValue,
-    revenueByPaymentMode,
+    revenueByPaymentMethod,
     popularItems,
-    weeklySales
+    weeklySales,
+    monthlyRevenue: 0,
+    totalProducts: 0,
+    lowStockCount: 0,
+    categorySales: []
   };
 };

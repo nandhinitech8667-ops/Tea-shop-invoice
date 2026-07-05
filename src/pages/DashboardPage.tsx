@@ -1,10 +1,9 @@
-import React from 'react';
-import { TrendingUp, ShoppingBag, Package, AlertTriangle, IndianRupee, BarChart3, Users } from 'lucide-react';
+import { TrendingUp, ShoppingBag, Package, AlertTriangle, IndianRupee, BarChart3 } from 'lucide-react';
 import { useInvoiceStore } from '../store/useInvoiceStore';
 import { useProductStore } from '../store/useProductStore';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  LineChart, Line, PieChart, Pie, Cell, Legend
+  PieChart, Pie, Cell, Legend
 } from 'recharts';
 
 const COLORS = ['#10b981', '#f59e0b', '#f97316', '#0ea5e9', '#8b5cf6'];
@@ -119,7 +118,7 @@ export default function DashboardPage() {
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="day" tick={{ fontSize: 12 }} />
               <YAxis tick={{ fontSize: 12 }} />
-              <Tooltip formatter={(value: number) => [`₹${value.toFixed(2)}`, 'Sales']} />
+              <Tooltip formatter={(value: any) => [`₹${Number(value).toFixed(2)}`, 'Sales']} />
               <Bar dataKey="amount" fill="#10b981" radius={[6, 6, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
@@ -180,7 +179,7 @@ export default function DashboardPage() {
                     <Cell key={index} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number) => [`₹${value.toFixed(2)}`, 'Revenue']} />
+                <Tooltip formatter={(value: any) => [`₹${Number(value).toFixed(2)}`, 'Revenue']} />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useInvoiceStore } from '../store/useInvoiceStore';
+import { useProductStore } from '../store/useProductStore';
 import { formatCurrency } from '../utils/helpers';
 import { 
   User, 
@@ -12,10 +13,9 @@ import {
   ShoppingCart,
   CreditCard,
   QrCode,
-  DollarSign,
-  Wallet
+  DollarSign
 } from 'lucide-react';
-import type { PaymentMode, QuickProduct } from '../types';
+import type { PaymentMethod, Product } from '../types';
 
 interface CustomItemInput {
   name: string;
@@ -27,15 +27,16 @@ export const InvoiceForm: React.FC = () => {
   const {
     activeCustomer,
     activeItems,
-    activePaymentMode,
+    activePaymentMethod,
     setActiveCustomer,
     addActiveItem,
     removeActiveItem,
     updateActiveItemQty,
     updateActiveItemPrice,
-    setActivePaymentMode,
-    quickProducts
+    setActivePaymentMethod
   } = useInvoiceStore();
+
+  const { products } = useProductStore();
 
   const [activeCategory, setActiveCategory] = useState<string>('All');
   
@@ -51,8 +52,8 @@ export const InvoiceForm: React.FC = () => {
   const categories = ['All', 'Classic Tea', 'Specialty Tea', 'Iced Tea', 'Boba', 'Snacks'];
 
   const filteredQuickProducts = activeCategory === 'All'
-    ? quickProducts
-    : quickProducts.filter(p => p.category === activeCategory);
+    ? products
+    : products.filter((p: Product) => p.category === activeCategory);
 
   // Handle customer input changes
   const handleCustomerChange = (field: 'name' | 'phone', val: string) => {
@@ -67,6 +68,7 @@ export const InvoiceForm: React.FC = () => {
     addActiveItem({
       id: Math.random().toString(36).substring(2, 9),
       name: data.name,
+      category: 'Custom',
       price: Number(data.price),
       quantity: Number(data.quantity)
     });
@@ -74,20 +76,22 @@ export const InvoiceForm: React.FC = () => {
   };
 
   // Quick add product handler
-  const handleQuickAdd = (product: QuickProduct) => {
+  const handleQuickAdd = (product: Product) => {
     addActiveItem({
       id: product.id,
       name: product.name,
+      category: product.category,
       price: product.price,
       quantity: 1
     });
   };
 
-  const paymentModes: { id: PaymentMode; label: string; icon: any }[] = [
+  const paymentModes: { id: PaymentMethod; label: string; icon: any }[] = [
     { id: 'cash', label: 'Cash', icon: DollarSign },
-    { id: 'upi', label: 'UPI QR', icon: QrCode },
-    { id: 'card', label: 'Card', icon: CreditCard },
-    { id: 'wallet', label: 'Wallet', icon: Wallet }
+    { id: 'gpay', label: 'Google Pay', icon: QrCode },
+    { id: 'phonepe', label: 'PhonePe', icon: QrCode },
+    { id: 'paytm', label: 'Paytm', icon: CreditCard },
+    { id: 'upi', label: 'Other UPI', icon: QrCode }
   ];
 
   return (
@@ -161,11 +165,11 @@ export const InvoiceForm: React.FC = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-72 overflow-y-auto pr-1">
-          {filteredQuickProducts.map((product) => (
+          {filteredQuickProducts.map((product: Product) => (
             <button
               key={product.id}
               onClick={() => handleQuickAdd(product)}
-              className={`p-3 rounded-2xl border border-slate-150 dark:border-zinc-800/40 text-left transition-all duration-200 active:scale-95 flex flex-col justify-between h-20 shadow-sm ${product.color}`}
+              className={`p-3 rounded-2xl border border-slate-150 dark:border-zinc-800/40 text-left transition-all duration-200 active:scale-95 flex flex-col justify-between h-20 shadow-sm`}
             >
               <span className="text-[11px] font-bold leading-snug line-clamp-2">
                 {product.name}
@@ -332,12 +336,12 @@ export const InvoiceForm: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {paymentModes.map((mode) => {
             const Icon = mode.icon;
-            const isSelected = activePaymentMode === mode.id;
+            const isSelected = activePaymentMethod === mode.id;
             return (
               <button
                 key={mode.id}
                 type="button"
-                onClick={() => setActivePaymentMode(mode.id)}
+                onClick={() => setActivePaymentMethod(mode.id)}
                 className={`py-3 px-4 rounded-2xl border flex items-center justify-center gap-2.5 font-bold text-xs transition-all ${
                   isSelected
                     ? 'bg-emerald-700 text-white border-emerald-700 shadow-md shadow-emerald-700/10'

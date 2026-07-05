@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { CheckCircle2, Printer, RotateCcw } from 'lucide-react';
 
 interface Props {

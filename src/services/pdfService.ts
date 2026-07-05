@@ -103,7 +103,7 @@ export const downloadInvoicePDF = (invoice: Invoice) => {
   doc.text(`Name:  ${invoice.customer.name || 'Walk-in Customer'}`, margin + 5, boxY + 6);
   doc.text(`Phone: ${invoice.customer.phone || 'N/A'}`, margin + 5, boxY + 11);
 
-  doc.text(`Mode:   ${invoice.paymentMode.toUpperCase()}`, pageWidth / 2 + 10, boxY + 6);
+  doc.text(`Mode:   ${invoice.paymentMethod.toUpperCase()}`, pageWidth / 2 + 10, boxY + 6);
   doc.text(`Status:  ${invoice.status.toUpperCase()}`, pageWidth / 2 + 10, boxY + 11);
 
   y += 30;
