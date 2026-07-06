@@ -129,7 +129,7 @@ export default function HistoryPage() {
               </div>
 
               {/* Actions */}
-              <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+              <div className="flex items-center flex-wrap gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
                 <button
                   onClick={() => setSelectedInvoice(selectedInvoice?.id === invoice.id ? null : invoice)}
                   className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"

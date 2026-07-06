@@ -47,7 +47,7 @@ export default function InventoryPage() {
         </div>
         <button
           onClick={() => setEditingProduct(null)}
-          className="flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-emerald-500/20 transition-all active:scale-95 text-sm"
+          className="w-full sm:w-auto justify-center flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-emerald-500/20 transition-all active:scale-95 text-sm"
         >
           <Plus size={16} />
           Add Product
@@ -114,7 +114,7 @@ export default function InventoryPage() {
           <p>No products found</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {filtered.map((product) => {
             const isLow = product.stock <= 5 && product.stock > 0;
             const isOut = product.stock === 0;

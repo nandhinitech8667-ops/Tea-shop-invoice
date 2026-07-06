@@ -84,7 +84,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
         {statCards.map((card) => {
           const Icon = card.icon;
           return (
@@ -110,7 +110,7 @@ export default function DashboardPage() {
       )}
 
       {/* Weekly Sales Chart */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 w-full overflow-hidden">
         <h2 className="font-bold text-gray-800 dark:text-white mb-4">Weekly Sales</h2>
         {weeklySales.some((d) => d.amount > 0) ? (
           <ResponsiveContainer width="100%" height={200}>
@@ -133,9 +133,9 @@ export default function DashboardPage() {
       </div>
 
       {/* Bottom row: Top Products + Category Pie */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full">
         {/* Top Products */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 w-full overflow-hidden">
           <h2 className="font-bold text-gray-800 dark:text-white mb-4">Top Products</h2>
           {topItems.length === 0 ? (
             <div className="text-center py-8 text-gray-400">
@@ -164,7 +164,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Category / Payment breakdown */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 w-full overflow-hidden">
           <h2 className="font-bold text-gray-800 dark:text-white mb-4">Sales by Category</h2>
           {pieData.length === 0 ? (
             <div className="text-center py-8 text-gray-400">

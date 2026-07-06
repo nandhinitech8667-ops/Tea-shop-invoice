@@ -61,7 +61,7 @@ export default function ReportsPage() {
       </div>
 
       {/* 30-Day Revenue Chart */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 w-full overflow-hidden">
         <h2 className="font-bold text-gray-800 dark:text-white mb-4">30-Day Revenue</h2>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={dailySales}>
@@ -75,7 +75,7 @@ export default function ReportsPage() {
       </div>
 
       {/* 30-Day Orders Chart */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 w-full overflow-hidden">
         <h2 className="font-bold text-gray-800 dark:text-white mb-4">30-Day Orders</h2>
         <ResponsiveContainer width="100%" height={180}>
           <BarChart data={dailySales}>
@@ -89,7 +89,7 @@ export default function ReportsPage() {
       </div>
 
       {/* Payment Breakdown */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 w-full overflow-hidden">
         <h2 className="font-bold text-gray-800 dark:text-white mb-4">Payment Methods</h2>
         {Object.keys(payBreakdown).length === 0 ? (
           <p className="text-sm text-gray-400 text-center py-6">No payment data yet</p>

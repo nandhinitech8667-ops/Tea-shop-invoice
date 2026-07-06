@@ -112,11 +112,11 @@ export const InvoicePreview: React.FC = () => {
         </div>
 
         {/* --- DYNAMIC PREVIEW CANVAS CONTAINER --- */}
-        <div className="flex justify-center bg-slate-50 dark:bg-zinc-950 p-4 rounded-2xl border border-dashed border-slate-200 dark:border-zinc-800/60 overflow-y-auto max-h-[500px]">
+        <div className="flex justify-center bg-slate-50 dark:bg-zinc-950 p-4 rounded-2xl border border-dashed border-slate-200 dark:border-zinc-800/60 overflow-y-auto overflow-x-auto max-h-[500px]">
           
           {/* --- STANDARD INVOICE LAYOUT (A4 STYLE) --- */}
           {activePrinterSize === 'standard' && (
-            <div className="w-full bg-white dark:bg-zinc-900 border border-slate-150 dark:border-zinc-800 shadow-sm p-6 text-xs text-slate-700 dark:text-zinc-300 rounded-xl leading-relaxed">
+            <div className="w-full min-w-[600px] bg-white dark:bg-zinc-900 border border-slate-150 dark:border-zinc-800 shadow-sm p-6 text-xs text-slate-700 dark:text-zinc-300 rounded-xl leading-relaxed">
               {/* Header */}
               <div className="flex justify-between items-start mb-6">
                 <div>

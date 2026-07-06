@@ -32,7 +32,7 @@ export default function MainLayout({ children }: Props) {
   };
 
   return (
-    <div className={`min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300`}>
+    <div className={`min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300 overflow-x-hidden w-full`}>
       {/* ── Sidebar (desktop) ── */}
       <aside className="hidden lg:flex fixed left-0 top-0 h-full w-56 xl:w-60 flex-col bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 shadow-sm z-40">
         {/* Logo */}
@@ -146,33 +146,8 @@ export default function MainLayout({ children }: Props) {
         </div>
       )}
 
-      {/* ── Mobile Bottom Nav ── */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 flex">
-        {NAV_ITEMS.map(({ id, label, icon: Icon }) => {
-          const isActive = currentPage === id;
-          const showBadge = id === 'inventory' && alertCount > 0;
-          return (
-            <button
-              key={id}
-              onClick={() => handleNav(id)}
-              className={`flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium transition-colors relative ${
-                isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400 dark:text-gray-500'
-              }`}
-            >
-              <Icon size={20} />
-              <span className="hidden xs:block">{label.split(' ')[0]}</span>
-              {showBadge && (
-                <span className="absolute top-1 right-[25%] bg-red-500 text-white text-[9px] font-bold rounded-full w-3.5 h-3.5 flex items-center justify-center">
-                  {alertCount}
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </nav>
-
       {/* ── Main Content ── */}
-      <main className="lg:ml-56 xl:ml-60 pt-16 lg:pt-0 pb-16 lg:pb-0 min-h-screen flex flex-col">
+      <main className="lg:ml-56 xl:ml-60 pt-16 lg:pt-0 min-h-screen flex flex-col w-full">
         <div className="flex-1 p-4 lg:p-6 max-w-screen-2xl mx-auto w-full">
           {children}
         </div>

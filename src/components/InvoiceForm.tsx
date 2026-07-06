@@ -259,13 +259,13 @@ export const InvoiceForm: React.FC = () => {
             {/* Cart Rows */}
             <div className="divide-y divide-slate-100 dark:divide-zinc-800/50 max-h-80 overflow-y-auto pr-1">
               {activeItems.map((item) => (
-                <div key={item.id} className="grid grid-cols-1 sm:grid-cols-12 items-center py-3.5 gap-2 px-1 text-slate-700 dark:text-zinc-300">
+                <div key={item.id} className="grid grid-cols-1 sm:grid-cols-12 items-center py-4 gap-3 sm:gap-2 px-1 text-slate-700 dark:text-zinc-300">
                   
                   {/* Name and delete */}
-                  <div className="col-span-5 flex items-center gap-3">
+                  <div className="sm:col-span-5 flex items-center gap-3">
                     <button
                       onClick={() => removeActiveItem(item.id)}
-                      className="text-slate-400 hover:text-red-500 p-1 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
+                      className="text-slate-400 hover:text-red-500 p-1.5 rounded-lg hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
                       title="Remove Item"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -276,23 +276,23 @@ export const InvoiceForm: React.FC = () => {
                   </div>
 
                   {/* Price input (editable in line!) */}
-                  <div className="col-span-2 text-center flex sm:justify-center items-center gap-1.5">
+                  <div className="sm:col-span-2 text-center flex justify-between sm:justify-center items-center gap-1.5">
                     <span className="sm:hidden text-[10px] text-slate-400 font-bold uppercase">Price: </span>
                     <input
                       type="number"
                       value={item.price}
                       onChange={(e) => updateActiveItemPrice(item.id, Number(e.target.value))}
-                      className="w-16 px-1.5 py-0.5 text-xs text-center bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-md focus:outline-none focus:ring-1 focus:ring-emerald-700 focus:border-emerald-700"
+                      className="w-20 sm:w-16 px-2 sm:px-1.5 py-1.5 sm:py-0.5 text-xs text-center bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-md focus:outline-none focus:ring-1 focus:ring-emerald-700 focus:border-emerald-700"
                     />
                   </div>
 
                   {/* Qty incrementors */}
-                  <div className="col-span-3 flex justify-between sm:justify-center items-center gap-2">
+                  <div className="sm:col-span-3 flex justify-between sm:justify-center items-center gap-2">
                     <span className="sm:hidden text-[10px] text-slate-400 font-bold uppercase">Qty: </span>
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => updateActiveItemQty(item.id, Math.max(item.quantity - 1, 1))}
-                        className="p-1 text-slate-500 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded border border-slate-200 dark:border-zinc-700 transition-colors"
+                        className="p-1.5 text-slate-500 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded border border-slate-200 dark:border-zinc-700 transition-colors"
                       >
                         <Minus className="w-3.5 h-3.5" />
                       </button>
@@ -301,7 +301,7 @@ export const InvoiceForm: React.FC = () => {
                       </span>
                       <button
                         onClick={() => updateActiveItemQty(item.id, item.quantity + 1)}
-                        className="p-1 text-slate-500 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded border border-slate-200 dark:border-zinc-700 transition-colors"
+                        className="p-1.5 text-slate-500 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded border border-slate-200 dark:border-zinc-700 transition-colors"
                       >
                         <Plus className="w-3.5 h-3.5" />
                       </button>
@@ -309,7 +309,7 @@ export const InvoiceForm: React.FC = () => {
                   </div>
 
                   {/* Row subtotal */}
-                  <div className="col-span-2 text-right flex justify-between sm:block items-center">
+                  <div className="sm:col-span-2 text-right flex justify-between sm:block items-center">
                     <span className="sm:hidden text-[10px] text-slate-400 font-bold uppercase">Subtotal: </span>
                     <span className="text-xs font-extrabold text-slate-800 dark:text-zinc-100">
                       {formatCurrency(item.subtotal)}
@@ -333,7 +333,7 @@ export const InvoiceForm: React.FC = () => {
         <h4 className="font-bold text-slate-800 dark:text-zinc-100 text-sm uppercase tracking-wider mb-4">
           Select Payment Method
         </h4>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {paymentModes.map((mode) => {
             const Icon = mode.icon;
             const isSelected = activePaymentMethod === mode.id;
