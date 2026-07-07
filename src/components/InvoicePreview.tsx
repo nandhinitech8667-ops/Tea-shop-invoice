@@ -116,7 +116,8 @@ export const InvoicePreview: React.FC = () => {
           
           {/* --- STANDARD INVOICE LAYOUT (A4 STYLE) --- */}
           {activePrinterSize === 'standard' && (
-            <div className="w-full min-w-[600px] bg-white dark:bg-zinc-900 border border-slate-150 dark:border-zinc-800 shadow-sm p-6 text-xs text-slate-700 dark:text-zinc-300 rounded-xl leading-relaxed">
+            <div className="w-full overflow-x-auto pb-2">
+              <div className="w-full min-w-[600px] bg-white dark:bg-zinc-900 border border-slate-150 dark:border-zinc-800 shadow-sm p-6 text-xs text-slate-700 dark:text-zinc-300 rounded-xl leading-relaxed">
               {/* Header */}
               <div className="flex justify-between items-start mb-6">
                 <div>
@@ -198,6 +199,7 @@ export const InvoicePreview: React.FC = () => {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           )}
 

@@ -71,7 +71,7 @@ export default function POSPage() {
         </div>
 
         {/* Right: Cart */}
-        <div className="w-80 xl:w-96 flex-shrink-0">
+        <div className="w-72 lg:w-80 xl:w-96 flex-shrink-0">
           <CartPanel />
         </div>
       </div>
